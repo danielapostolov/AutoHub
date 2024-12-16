@@ -1,13 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <title>Autohub</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- TODO  -->
+  <style>
+    .hover-grow:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
-<body>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-100">
   <app-root></app-root>
 </body>
+
 </html>
