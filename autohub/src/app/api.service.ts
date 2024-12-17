@@ -10,8 +10,19 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() {
+  getCars() {
     const { apiUrl } = environment;
+    return this.http.get<Theme[]>(`${apiUrl}/themes`)
+  }
+
+  getRecentCars(limit?: number) {
+    const { apiUrl } = environment;
+
+    let url = `${apiUrl}/themes`;
+
+    if (limit) {
+      url += `?limit=${limit}`;
+    }
     return this.http.get<Theme[]>(`${apiUrl}/themes`)
   }
 }

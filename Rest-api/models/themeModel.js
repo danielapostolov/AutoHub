@@ -18,6 +18,10 @@ const themeSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    imgUrl: {
+        type: String,
+        required: true
+    },
     mileage: {
         type: Number,
         required: true

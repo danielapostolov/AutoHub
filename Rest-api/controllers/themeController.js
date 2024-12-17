@@ -27,10 +27,12 @@ function createTheme(req, res, next) {
         likes,
         model,
         year,
+        imgUrl,
         mileage,
         fuelType,
         price,
-        description } = req.body;
+        located,
+        postText } = req.body;
     const { _id: userId } = req.user;
 
     themeModel.create({
@@ -38,12 +40,13 @@ function createTheme(req, res, next) {
         likes,
         model,
         year,
+        imgUrl,
         mileage,
         fuelType,
         price,
-        description
+        located,
     }).then(theme => {
-        newPost(description, userId, theme._id)
+        newPost(postText, userId, theme._id)
             .then(([_, updatedTheme]) => res.status(200).json(updatedTheme))
     }).catch(next);
 }
