@@ -13,25 +13,39 @@ function getTheme(req, res, next) {
 
     themeModel.findById(themeId)
         .populate({
-            path : 'posts',
-            populate : {
-              path : 'userId'
+            path: 'posts',
+            populate: {
+                path: 'userId'
             }
-          })
+        })
         .then(theme => res.json(theme))
         .catch(next);
 }
 
 function createTheme(req, res, next) {
-    const { themeName, postText } = req.body;
+    const { make,
+        likes,
+        model,
+        year,
+        mileage,
+        fuelType,
+        price,
+        description } = req.body;
     const { _id: userId } = req.user;
 
-    themeModel.create({ themeName, userId, subscribers: [userId] })
-        .then(theme => {
-            newPost(postText, userId, theme._id)
-                .then(([_, updatedTheme]) => res.status(200).json(updatedTheme))
-        })
-        .catch(next);
+    themeModel.create({
+        make,
+        likes,
+        model,
+        year,
+        mileage,
+        fuelType,
+        price,
+        description
+    }).then(theme => {
+        newPost(description, userId, theme._id)
+            .then(([_, updatedTheme]) => res.status(200).json(updatedTheme))
+    }).catch(next);
 }
 
 function subscribe(req, res, next) {
@@ -44,9 +58,22 @@ function subscribe(req, res, next) {
         .catch(next);
 }
 
+function like(req, res, next) {
+    const { themeId } = req.params;
+    const { _id: userId } = req.user;
+    // TODO check themeId with theme._id
+
+    console.log('like')
+
+    postModel.updateOne({ _id: themeId }, { $addToSet: { likes: userId } }, { new: true })
+        .then(() => res.status(200).json({ message: 'Liked successful!' }))
+        .catch(next)
+}
+
 module.exports = {
     getThemes,
     createTheme,
     getTheme,
     subscribe,
+    like
 }
