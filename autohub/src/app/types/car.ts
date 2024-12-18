@@ -10,7 +10,7 @@ export interface Theme {
     fuelType: 'petrol' | 'diesel' | 'electric' | 'hybrid'; // Type of fuel used
     price: number;                                                 // Optional: Price of the car;
     located: string;
-    userId: User;                 //TODO User type/model
+    userId: User;                 
     created_at: string;
     updatedAt: string;
     __v: number;
