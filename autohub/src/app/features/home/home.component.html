@@ -1,0 +1,57 @@
+<header class="bg-cover bg-center h-screen relative"
+    style="background-image: url('https://images.stockcake.com/public/5/0/f/50fa0119-e7bd-4fab-ab41-4427036b1b97_large/red-sports-car-stockcake.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center fade-in">
+        <h1 class="text-6xl font-bold text-red-500 mb-6 drop-shadow-lg">Welcome to AutoHub</h1>
+        <p class="text-2xl text-gray-300 mb-8">Discover the best cars and share your passion with others</p>
+        <a href="#catalog"
+            class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-4 text-xl rounded-full shadow-lg transform hover:scale-105 transition">Explore
+            Catalog
+        </a>
+    </div>
+</header>
+
+<!-- Most Recent Section -->
+<section id="recent" class="container mx-auto py-20">
+    <h2 class="text-4xl font-extrabold text-center text-red-500 mb-12 drop-shadow-lg">Most Recent Cars</h2>
+
+    @if(isLoading){
+    <app-loader />
+    }@else {
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        @for (car of cars; track $index) {
+
+        <!-- Example Car Card -->
+        <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden hover-grow relative">
+            <!-- Permanent Badge -->
+            <div class="absolute top-0 left-0 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm px-2 py-1 rounded-br z-10">
+                New
+            </div>
+        
+            <img src="{{car.imgUrl}}" alt="Car Image" class="w-full h-56 object-cover">
+            <div class="p-6">
+                <!-- Car Title -->
+                <h3 class="text-3xl font-bold text-red-500 mb-4">{{car.make}} {{car.model}}</h3>
+        
+                <!-- Car Details in One Line with Dots -->
+                <div class="text-gray-300 text-lg mb-4">
+                    <span>{{car.year}}</span>
+                    <span class="mx-2 text-red-500 text-lg">•</span>
+                    <span>{{car.mileage}} km</span>
+                    <span class="mx-2 text-red-500 text-lg">•</span>
+                    <span>{{car.located}}</span>
+                </div>
+        
+                <!-- Styled Button -->
+                <a href="#" class="text-red-500 hover:text-red-400 transition">View Details</a>
+            </div>
+        </div>
+        
+
+        }
+
+    </div>
+    }
+
+</section>
