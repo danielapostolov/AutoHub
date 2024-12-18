@@ -34,14 +34,18 @@ const themeSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    userId: {
+    located: {
+        type: String,
+        required: false
+    }, userId: {
         type: ObjectId,
         ref: "User"
     },
-    description: {
-        type: String,
-        required: false
-    },
+
+    // description: {
+    //     type: String,
+    //     required: false
+    // },
     //TODO add owner id
 }, { timestamps: { createdAt: 'created_at' } });
 
