@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -10,4 +11,11 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginComponent {
 
+  constructor(private userService: UserService, private router: Router) { }
+
+  login(event: Event, email: string, password: string) {
+    event.preventDefault();
+    this.userService.login();
+    this.router.navigate(['/home'])
+  }
 }
