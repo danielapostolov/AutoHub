@@ -43,20 +43,21 @@ export class RegisterComponent {
 
   register() {
     if (this.form.invalid) {
+      console.error("Invalid email or password!")
       return;
     }
 
-    // const {
-    //   username,
-    //   email,
-    //   tel,
-    //   passGroup: { password, rePassword } = {},
-    // } = this.form.value;
+    const {
+      username,
+      email,
+      tel,
+      passGroup: { password, rePassword } = {},
+    } = this.form.value;
 
-    // this.userService
-    //   .register(username!, email!, tel!, password!, rePassword!)
-    //   .subscribe(() => {
-    //     this.router.navigate(['/themes']);
-    //   });
+    this.userService
+      .register(username!, email!, tel!, password!, rePassword!)
+      .subscribe(() => {
+        this.router.navigate(['/home']);
+      });
   }
 }

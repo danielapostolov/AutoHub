@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment.development';
 import { Theme } from './types/car';
 
 @Injectable({
@@ -11,25 +10,21 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getCars() {
-    const { apiUrl } = environment;
-    return this.http.get<Theme[]>(`${apiUrl}/themes`)
+    return this.http.get<Theme[]>(`/api/themes`)
   }
 
   getRecentCars(limit?: number) {
-    const { apiUrl } = environment;
-
-    let url = `${apiUrl}/themes`;
+    let url = `/api/themes`;
 
     if (limit) {
       url += `?limit=${limit}`;
     }
-    return this.http.get<Theme[]>(`${apiUrl}/themes`)
+    return this.http.get<Theme[]>(`/api/themes`)
   }
 
   getSingleCar(id: string) {
-    const { apiUrl } = environment;
 
-    return this.http.get<Theme>(`${apiUrl}/themes/${id}`)
+    return this.http.get<Theme>(`/api/themes/${id}`)
   }
 
 
@@ -42,7 +37,6 @@ export class ApiService {
     fuelType: string,
     price: number,
     located: string,) {
-    const { apiUrl } = environment;
     const payload = {
       make,
       model,
@@ -53,5 +47,7 @@ export class ApiService {
       price,
       located,
     }
+
+    return this.http.post<Theme>(`/api/themes`, payload)
   }
 }
