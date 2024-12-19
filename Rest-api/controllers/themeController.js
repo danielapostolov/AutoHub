@@ -48,22 +48,9 @@ function createTheme(req, res, next) {
     }).then(theme => {
         newPost(postText, userId, theme._id)
             .then(([_, updatedTheme]) => res.status(200).json(updatedTheme))
-            //TODO remove new post when create
     }).catch(next);
 }
 
-// function getLatestsThemes(req, res, next) {
-//     const limit = Number(req.query.limit) || 0;
-
-//     themeModel.find()
-//         .sort({ created_at: -1 })
-//         .limit(limit)
-//         .populate('themeId userId')
-//         .then(themes => {
-//             res.status(200).json(themes)
-//         })
-//         .catch(next);
-// }
 
 function subscribe(req, res, next) {
     const themeId = req.params.themeId;
