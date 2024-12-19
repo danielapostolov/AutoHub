@@ -1,89 +1,157 @@
 <section class="container mx-auto py-20">
     <h2 class="text-4xl font-extrabold text-center text-red-500 mb-12 drop-shadow-lg">Add New Car</h2>
 
-    <form class="bg-gray-800 shadow-xl rounded-lg p-8 max-w-lg mx-auto space-y-6">
+    <form [formGroup]="carForm" (ngSubmit)="createCar()"
+        class="bg-gray-800 shadow-xl rounded-lg p-8 max-w-lg mx-auto space-y-6">
         <!-- Make -->
         <div>
             <label for="make" class="block text-gray-400 mb-2">Make</label>
-            <input type="text" id="make" name="make"
+            <input type="text" id="make" formControlName="make"
                 class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Enter car make" required #inputMake>
+                placeholder="Enter car make">
+            @if(formControls.make.touched) {
+            <div>
+                @if(formControls.make.errors?.['required']) {
+                <p class="text-red-500 text-sm mt-2">Make is required!</p>
+                }
+                @if(formControls.make.errors?.['minlength']) {
+                <p class="text-red-500 text-sm mt-2">Make must be at least 2 characters!</p>
+                }
+            </div>
+            }
         </div>
 
-        <!-- TODO add err fields -->
         <!-- Model -->
         <div>
             <label for="model" class="block text-gray-400 mb-2">Model</label>
-            <input type="text" id="model" name="model"
+            <input type="text" id="model" formControlName="model"
                 class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Enter car model" required #inputModel>
+                placeholder="Enter car model">
+            @if(formControls.model.touched) {
+            <div>
+                @if(formControls.model.errors?.['required']) {
+                <p class="text-red-500 text-sm mt-2">Model is required!</p>
+                }
+                @if(formControls.model.errors?.['minlength']) {
+                <p class="text-red-500 text-sm mt-2">Model must be at least 2 characters!</p>
+                }
+            </div>
+            }
         </div>
 
         <!-- Year -->
         <div>
             <label for="year" class="block text-gray-400 mb-2">Year</label>
-            <input type="string" id="year" name="year"
+            <input type="number" id="year" formControlName="year"
                 class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Enter year of manufacture" required #inputYear>
+                placeholder="Enter year of manufacture">
+            @if(formControls.year.touched) {
+            <div>
+                @if(formControls.year.errors?.['required']) {
+                <p class="text-red-500 text-sm mt-2">Year is required!</p>
+                }
+                @if(formControls.year.errors?.['min']) {
+                <p class="text-red-500 text-sm mt-2">Year must be after 1900!</p>
+                }
+                @if(formControls.year.errors?.['max']) {
+                <p class="text-red-500 text-sm mt-2">Year cannot be in the future!</p>
+                }
+            </div>
+            }
         </div>
 
         <!-- Image URL -->
         <div>
             <label for="imgUrl" class="block text-gray-400 mb-2">Image URL</label>
-            <input type="text" id="imgUrl" name="imgUrl"
+            <input type="text" id="imgUrl" formControlName="imgUrl"
                 class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Enter image URL" required #inputImgUrl>
+                placeholder="Enter image URL">
+            @if(formControls.imgUrl.touched) {
+            <div>
+                @if(formControls.imgUrl.errors?.['required']) {
+                <p class="text-red-500 text-sm mt-2">Image URL is required!</p>
+                }
+                @if(formControls.imgUrl.errors?.['pattern']) {
+                <p class="text-red-500 text-sm mt-2">Invalid URL format!</p>
+                }
+            </div>
+            }
         </div>
 
         <!-- Mileage -->
         <div>
-            <label for="mileage" class="block text-gray-400 mb-2">Mileage (km)</label>
-            <input type="string" id="mileage" name="mileage"
+            <label for="mileage" class="block text-gray-400 mb-2">Mileage</label>
+            <input type="number" id="mileage" formControlName="mileage"
                 class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Enter mileage" required #inputMileage>
+                placeholder="Enter mileage">
+            @if(formControls.mileage.touched) {
+            <div>
+                @if(formControls.mileage.errors?.['required']) {
+                <p class="text-red-500 text-sm mt-2">Mileage is required!</p>
+                }
+                @if(formControls.mileage.errors?.['min']) {
+                <p class="text-red-500 text-sm mt-2">Mileage cannot be negative!</p>
+                }
+            </div>
+            }
         </div>
 
         <!-- Fuel Type -->
         <div>
             <label for="fuelType" class="block text-gray-400 mb-2">Fuel Type</label>
-            <select id="fuelType" name="fuelType"
+            <input type="text" id="fuelType" formControlName="fuelType"
                 class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                required #inputFuel>
-                <option value="petrol">Petrol</option>
-                <option value="diesel">Diesel</option>
-                <option value="electric">Electric</option>
-                <option value="hybrid">Hybrid</option>
-            </select>
+                placeholder="Enter fuel type">
+            @if(formControls.fuelType.touched) {
+            <div>
+                @if(formControls.fuelType.errors?.['required']) {
+                <p class="text-red-500 text-sm mt-2">Fuel type is required!</p>
+                }
+            </div>
+            }
         </div>
 
         <!-- Price -->
         <div>
-            <label for="price" class="block text-gray-400 mb-2">Price ($)</label>
-            <input type="string" id="price" name="price"
+            <label for="price" class="block text-gray-400 mb-2">Price</label>
+            <input type="number" id="price" formControlName="price"
                 class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Enter price" required #inputPrice>
+                placeholder="Enter price">
+            @if(formControls.price.touched) {
+            <div>
+                @if(formControls.price.errors?.['required']) {
+                <p class="text-red-500 text-sm mt-2">Price is required!</p>
+                }
+                @if(formControls.price.errors?.['min']) {
+                <p class="text-red-500 text-sm mt-2">Price must be greater than 0!</p>
+                }
+            </div>
+            }
         </div>
 
         <!-- Location -->
         <div>
             <label for="located" class="block text-gray-400 mb-2">Location</label>
-            <input type="text" id="located" name="located"
+            <input type="text" id="located" formControlName="located"
                 class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                placeholder="Enter location" required #inputLocation>
+                placeholder="Enter location">
+            @if(formControls.located.touched) {
+            <div>
+                @if(formControls.located.errors?.['required']) {
+                <p class="text-red-500 text-sm mt-2">Location is required!</p>
+                }
+                @if(formControls.located.errors?.['minlength']) {
+                <p class="text-red-500 text-sm mt-2">Location must be at least 2 characters!</p>
+                }
+            </div>
+            }
         </div>
 
         <!-- Submit Button -->
         <button type="submit"
             class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded shadow-lg hover:from-red-600 hover:to-red-700 transition"
-            (click)="createCar($event,inputMake.value,
-            inputModel.value,
-            inputYear.value,
-            inputImgUrl.value,
-            inputMileage.value,
-            inputFuel.value,
-            inputPrice.value,
-            inputLocation.value)">Add
-            Car
+            [disabled]="carForm.invalid">
+            Add Car
         </button>
     </form>
 </section>
