@@ -15,7 +15,7 @@ const themeSchema = new mongoose.Schema({
         required: true
     },
     year: {
-        type: Number,
+        type: String,
         required: true
     },
     imgUrl: {
@@ -23,7 +23,7 @@ const themeSchema = new mongoose.Schema({
         required: true
     },
     mileage: {
-        type: Number,
+        type: String,
         required: true
     },
     fuelType: {
@@ -31,7 +31,7 @@ const themeSchema = new mongoose.Schema({
         required: true
     },
     price: {
-        type: Number,
+        type: String,
         required: true
     },
     located: {

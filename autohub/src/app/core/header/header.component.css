@@ -1,3 +1,7 @@
-header{
-    background-image:url(assets/hero-image.webp);
+header {
+    background-image: url(assets/hero-image.webp);
+}
+
+.logout-btn {
+    cursor: pointer;
 }

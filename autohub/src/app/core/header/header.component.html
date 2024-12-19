@@ -1,4 +1,4 @@
-<nav class="bg-gray-800 shadow-lg">
+<nav class="bg-gray-800 shadow-lg relative z-50">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-3">
             <img src="https://st5.depositphotos.com/89086872/76160/v/450/depositphotos_761605016-stock-illustration-car-logo-icon-vector-design.jpg"
@@ -9,15 +9,52 @@
         <ul class="flex space-x-8 text-lg">
             <li><a routerLink="/" class="hover:text-red-400 transition">Home</a></li>
             <li><a routerLink="/cars" class="hover:text-red-400 transition">Catalog</a></li>
+            @if (isLoggedIn) {
             <li><a routerLink="/car-create" class="hover:text-red-400 transition">Add</a></li>
+            }
             <li><a routerLink="/about" class="hover:text-red-400 transition">About</a></li>
             <li><a routerLink="/contacts" class="hover:text-red-400 transition">Contacts</a></li>
         </ul>
-        <div class="flex space-x-4">
+        <div class="flex items-center space-x-4">
+            @if (!isLoggedIn) {
             <a routerLink="/login"
                 class="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg shadow-lg transition">Login</a>
             <a routerLink="/register"
                 class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg shadow-lg transition">Register</a>
+            } @else {
+            <!-- Profile Section -->
+            <div class="relative group">
+                <!-- Profile Image -->
+                <button class="flex items-center space-x-2 focus:outline-none">
+                    <!-- user.imgUrl || -->
+                    <img src="{{'https://via.placeholder.com/40'}}" alt="User Avatar"
+                        class="h-10 w-10 rounded-full border-2 border-red-500">
+                </button>
+
+                <!-- Dropdown Menu -->
+                <div
+                    class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-lg shadow-lg text-gray-300 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-300">
+                    <div class="px-4 py-3 border-b border-gray-600">
+                        <p class="text-sm font-bold">{{firstName}}</p>
+                        <p class="text-xs text-gray-400">{{email}}</p>
+                    </div>
+                    <ul class="py-2">
+                        <li>
+                            <a routerLink="/my-posts" class="block px-4 py-2 hover:bg-gray-600 transition">My Posts</a>
+                        </li>
+                        <li>
+                            <a routerLink="/liked-posts" class="block px-4 py-2 hover:bg-gray-600 transition">Liked
+                                Posts</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <button (click)="logout()" class="hover:text-red-400 transition">
+                Logout
+            </button>
+            }
         </div>
     </div>
 </nav>

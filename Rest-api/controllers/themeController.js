@@ -48,6 +48,7 @@ function createTheme(req, res, next) {
     }).then(theme => {
         newPost(postText, userId, theme._id)
             .then(([_, updatedTheme]) => res.status(200).json(updatedTheme))
+            //TODO remove new post when create
     }).catch(next);
 }
 
