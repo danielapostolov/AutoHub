@@ -10,7 +10,7 @@ function getThemes(req, res, next) {
 
 function getTheme(req, res, next) {
     const { themeId } = req.params;
-
+// TODO change id
     themeModel.findById(themeId)
         .populate({
             path: 'posts',
@@ -52,6 +52,19 @@ function createTheme(req, res, next) {
     }).catch(next);
 }
 
+// function getLatestsThemes(req, res, next) {
+//     const limit = Number(req.query.limit) || 0;
+
+//     themeModel.find()
+//         .sort({ created_at: -1 })
+//         .limit(limit)
+//         .populate('themeId userId')
+//         .then(themes => {
+//             res.status(200).json(themes)
+//         })
+//         .catch(next);
+// }
+
 function subscribe(req, res, next) {
     const themeId = req.params.themeId;
     const { _id: userId } = req.user;
@@ -79,5 +92,5 @@ module.exports = {
     createTheme,
     getTheme,
     subscribe,
-    like
+    like,
 }

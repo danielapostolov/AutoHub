@@ -15,7 +15,7 @@ export class CarDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private api: ApiService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     let id = this.route.snapshot.params['carId']
     this.api.getSingleCar(id).subscribe(car => {
       this.car = car;

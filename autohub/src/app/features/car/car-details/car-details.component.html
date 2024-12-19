@@ -1,7 +1,7 @@
 <section class="container mx-auto py-20">
     <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden hover-grow transition transform hover:scale-105">
         <!-- Car Image -->
-        <img src="{{car.imgUrl}}" alt="Car Image" class="w-full h-96 object-cover">
+        <img src={{car.imgUrl}} alt="Car Image" class="w-full h-96 object-cover">
 
         <div class="p-8">
             <!-- Car Title -->
@@ -21,9 +21,9 @@
             <div class="mt-6 flex items-center space-x-4">
                 <button
                     class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2 rounded-lg shadow-lg transition">
-                    Like ({{car.likes.length || 0}})
+                    Like ({{ car.likes && car.likes.length || 0}})
                 </button>
-                <p class="text-gray-400">Total Likes: <span class="text-red-500 font-bold">{{car.likes.length ||
+                <p class="text-gray-400">Total Likes: <span class="text-red-500 font-bold">{{car.likes && car.likes.length ||
                         0}}</span></p>
             </div>
 
