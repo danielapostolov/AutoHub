@@ -5,11 +5,11 @@ export interface Theme {
     make: string;                // Manufacturer of the car (e.g., Toyota, Ford)
     likes: string[]; //TODO User[]
     model: string;               // Model of the car (e.g., Camry, Mustang)
-    year: number;              // Manufacturing year of the car;
+    year: string;              // Manufacturing year of the car;
     imgUrl: string;
-    mileage: number;                                                // Optional: Mileage in kilometers or miles
+    mileage: string;                                                // Optional: Mileage in kilometers or miles
     fuelType: 'petrol' | 'diesel' | 'electric' | 'hybrid'; // Type of fuel used
-    price: number;                                                 // Optional: Price of the car;
+    price: string;                                                 // Optional: Price of the car;
     located: string;
     posts:Post[];
     userId: User;                 
@@ -20,15 +20,17 @@ export interface Theme {
 }
 
 // transmission: 'manual' | 'automatic' | 'semi-automatic'; // Transmission type
+//TODO
 
-export interface Theme {
-    make: string;                
-    likes: string[]; 
-    model: string;               
-    year: number;              
-    imgUrl: string;
-    mileage: number;                                                
-    fuelType: 'petrol' | 'diesel' | 'electric' | 'hybrid'; 
-    price: number;                                                 
-    located: string;
-}
+
+// export interface Theme {
+//     make: string;                
+//     likes: string[]; 
+//     model: string;               
+//     year: number;              
+//     imgUrl: string;
+//     mileage: number;                                                
+//     fuelType: 'petrol' | 'diesel' | 'electric' | 'hybrid'; 
+//     price: number;                                                 
+//     located: string;
+// }

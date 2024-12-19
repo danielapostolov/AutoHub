@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../../../api.service';
 
 @Component({
   selector: 'app-car-create',
@@ -9,4 +10,18 @@ import { Component } from '@angular/core';
 })
 export class CarCreateComponent {
 
+  constructor(private api: ApiService) { }
+
+  createCar(event: Event, make: string,
+    model: string,
+    year: string,
+    imgUrl: string,
+    mileage: string,
+    fuelType: string,
+    price: string,
+    located: string) {
+
+
+    event.preventDefault();
+  }
 }

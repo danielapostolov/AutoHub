@@ -31,4 +31,25 @@ export class ApiService {
 
     return this.http.get<Theme>(`${apiUrl}/themes/${id}`)
   }
+
+  createCar(make: string,
+    model: string,
+    year: string,
+    imgUrl: string,
+    mileage: number,
+    fuelType: string,
+    price: number,
+    located: string,) {
+    const { apiUrl } = environment;
+    const payload = {
+      make,
+      model,
+      year,
+      imgUrl,
+      mileage,
+      fuelType,
+      price,
+      located,
+    }
+  }
 }
