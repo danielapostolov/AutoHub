@@ -1,30 +1,50 @@
 <section class="h-screen flex items-center justify-center">
     <div class="bg-gray-800 shadow-lg rounded-lg p-8 max-w-md w-full">
         <h2 class="text-4xl font-bold text-red-500 text-center mb-8">Login</h2>
-        <form action="#" method="POST" class="space-y-6">
+
+        <form class="space-y-6" #form="ngForm" (ngSubmit)="login(form)">
             <div>
                 <label for="email" class="block text-gray-400 mb-2">Email</label>
                 <input type="email" id="email" name="email"
                     class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                    placeholder="Enter your email" required #inputEmail>
+                    placeholder="Enter your email" ngModel #inputEmail="ngModel" required [appEmail]="domains" />
+
+                <!-- <p class="text-red-500 text-sm mt-2">Invalid email address. Please enter a valid email.</p> -->
             </div>
+
+            @if(inputEmail?.touched){
+            <div>
+                @if(inputEmail?.errors?.['required']){
+                <p class="text-red-500 text-sm mt-2">Email is required!</p>
+                }
+                <!--  -->
+                @if(inputEmail?.errors?.['emailValidator']){
+                <p class="text-red-500 text-sm mt-2">Email is not valid!</p>
+                }
+            </div>
+            }
             <div>
                 <label for="password" class="block text-gray-400 mb-2">Password</label>
                 <input type="password" id="password" name="password"
                     class="w-full px-4 py-2 rounded bg-gray-700 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-500"
-                    placeholder="Enter your password" required #inputPassword>
+                    placeholder="Enter your password" ngModel #inputPassword="ngModel" minlength="6" required>
             </div>
-            <div class="flex justify-between items-center text-sm text-gray-400">
-                <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox bg-gray-700 text-red-500 focus:ring-red-500">
-                    <span class="ml-2">Remember Me</span>
-                </label>
-                <a href="#" class="text-red-500 hover:text-red-400">Forgot Password?</a>
+
+            @if(inputPassword?.touched){
+            <div>
+                @if(inputPassword?.errors?.['required']){
+                <p class="text-red-500 text-sm mt-2">Password is required!</p>
+                }
+                <!--  -->
+                @if(inputPassword?.errors?.['minlength']){
+                <p class="text-red-500 text-sm mt-2">Password must be at least 6 characters long.</p>
+                }
             </div>
+            }
 
             <button type="submit"
                 class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2 rounded shadow-lg hover:from-red-600 hover:to-red-700 transition"
-                (click)="login($event, inputEmail.value, inputPassword.value)">
+                [disabled]="form.invalid">
                 Login
             </button>
         </form>
