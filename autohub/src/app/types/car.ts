@@ -1,3 +1,4 @@
+import { Post } from "./post";
 import { User } from "./user";
 
 export interface Theme {
@@ -10,6 +11,7 @@ export interface Theme {
     fuelType: 'petrol' | 'diesel' | 'electric' | 'hybrid'; // Type of fuel used
     price: number;                                                 // Optional: Price of the car;
     located: string;
+    posts:Post[];
     userId: User;                 
     created_at: string;
     updatedAt: string;

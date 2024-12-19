@@ -37,7 +37,12 @@ const themeSchema = new mongoose.Schema({
     located: {
         type: String,
         required: false
-    }, userId: {
+    },
+    posts: [{
+        type: ObjectId,
+        ref: "Post"
+    }], 
+    userId: {
         type: ObjectId,
         ref: "User"
     },

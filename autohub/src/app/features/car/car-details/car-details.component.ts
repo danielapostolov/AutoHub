@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApiService } from '../../../api.service';
+import { Theme } from '../../../types/car';
 
 @Component({
   selector: 'app-car-details',
@@ -7,6 +10,15 @@ import { Component } from '@angular/core';
   templateUrl: './car-details.component.html',
   styleUrl: './car-details.component.css'
 })
-export class CarDetailsComponent {
+export class CarDetailsComponent implements OnInit {
+  car = {} as Theme;
 
+  constructor(private route: ActivatedRoute, private api: ApiService) { }
+
+  ngOnInit(): void {
+    let id = this.route.snapshot.params['carId']
+    this.api.getSingleCar(id).subscribe(car => {
+      this.car = car;
+    });
+  }
 }
