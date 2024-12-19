@@ -9,6 +9,7 @@ import { CarDetailsComponent } from './features/car/car-details/car-details.comp
 import { AboutComponent } from './features/about/about.component';
 import { ContactComponent } from './features/contact/contact.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProfileComponent } from './features/user/profile/profile.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,9 +31,10 @@ export const routes: Routes = [
     },
 
     { path: 'home/:carId', redirectTo: 'cars/:carId', pathMatch: 'full' },
-    { path: 'car-create', component: CarCreateComponent, canActivate:[AuthGuard]},
+    { path: 'car-create', component: CarCreateComponent, canActivate: [AuthGuard] },
     { path: 'about', component: AboutComponent },
     { path: 'contacts', component: ContactComponent },
+    { path: 'profile', component: ProfileComponent },
 
     { path: '404', component: ErrorComponent },
     { path: '**', redirectTo: '/404' },

@@ -1,0 +1,22 @@
+<section class="container mx-auto py-20">
+    <h2 class="text-4xl font-extrabold text-center text-red-500 mb-12 drop-shadow-lg">User Profile</h2>
+
+    <div class="bg-gray-800 shadow-xl rounded-lg p-8 max-w-lg mx-auto space-y-6">
+        <div class="text-center">
+            <img  alt="Profile Image" class="w-32 h-32 rounded-full mx-auto mb-4">
+            <h3 class="text-3xl font-bold text-gray-100">{{ 'user?.username' }}</h3>
+            <p class="text-gray-400">{{ 'user?.email' }}</p>
+        </div>
+
+        <div class="mt-6">
+            <div class="flex justify-between">
+                <span class="font-semibold text-gray-300">Phone:</span>
+                <span class="text-gray-100">{{ 'user?.phone' }}</span>
+            </div>
+            <div class="flex justify-between mt-2">
+                <span class="font-semibold text-gray-300">Created At:</span>
+                <span class="text-gray-100">{{ 'user?.created_at'}}</span>
+            </div>
+        </div>
+    </div>
+</section>
