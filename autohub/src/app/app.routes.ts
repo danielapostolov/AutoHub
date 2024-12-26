@@ -17,7 +17,7 @@ export const routes: Routes = [
 
     //user routing(not logged in)
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'register', component: RegisterComponent }, 
 
     //Theme(car) routing
     {
