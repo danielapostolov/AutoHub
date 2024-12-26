@@ -29,9 +29,9 @@ export class UserService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<UserForAuth>('/api/login', { email, password })
-      .pipe(tap((user) => this.user$$.next(user)))
-
+    return this.http
+      .post<UserForAuth>('/api/login', { email, password })
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   register(username: string, email: string, tel: string, password: string, rePassword: string) {
@@ -45,6 +45,13 @@ export class UserService {
   logout() {
     this.user = null;
     localStorage.removeItem(this.USER_KEY);
+  }
+
+
+  getProfile() {
+    return this.http
+      .get<UserForAuth>('/api/users/profile')
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
 }
