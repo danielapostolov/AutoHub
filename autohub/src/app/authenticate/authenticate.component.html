@@ -1,1 +1,5 @@
-<p>authenticate works!</p>
+@if (isAuthenticating) {
+<app-loader />
+}@else {
+<ng-content />
+}
