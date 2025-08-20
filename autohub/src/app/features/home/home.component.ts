@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
    ngOnInit() {
     this.api.getCars().subscribe(cars => {
       this.cars = cars.slice(-3);
-      console.log(this.cars);
       
       this.isLoading = false;
     });

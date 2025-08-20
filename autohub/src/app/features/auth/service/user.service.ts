@@ -53,5 +53,5 @@ export class UserService {
       .get<UserForAuth>('/api/users/profile')
       .pipe(tap((user) => this.user$$.next(user)));
   }
-
+  //  TODO check endpoint
 }
