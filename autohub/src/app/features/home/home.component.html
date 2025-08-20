@@ -22,19 +22,20 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         @for (car of cars; track $index) {
 
-        <!-- Example Car Card -->
+
         <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden hover-grow relative">
             <!-- Permanent Badge -->
-            <div class="absolute top-0 left-0 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm px-2 py-1 rounded-br z-10">
+            <div
+                class="absolute top-0 left-0 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm px-2 py-1 rounded-br z-10">
                 New
             </div>
-        
+
             <img src="{{car.imgUrl}}" alt="Car Image" class="w-full h-56 object-cover">
             <div class="p-6">
                 <!-- Car Title -->
                 <h3 class="text-3xl font-bold text-red-500 mb-4">{{car.make}} {{car.model}}</h3>
-        
-                <!-- Car Details in One Line with Dots -->
+
+                <!-- Car Details -->
                 <div class="text-gray-300 text-lg mb-4">
                     <span>{{car.year}}</span>
                     <span class="mx-2 text-red-500 text-lg">•</span>
@@ -42,12 +43,11 @@
                     <span class="mx-2 text-red-500 text-lg">•</span>
                     <span>{{car.located}}</span>
                 </div>
-        
-                <!-- Styled Button -->
+                <!-- TODO add price, location, imgURL from model -->
                 <a [routerLink]="car._id" class="text-red-500 hover:text-red-400 transition">View Details</a>
             </div>
         </div>
-        
+
 
         }
 

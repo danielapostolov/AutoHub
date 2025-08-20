@@ -18,9 +18,20 @@ export class HomeComponent implements OnInit {
 
   constructor(private api: ApiService) { }
 
-  ngOnInit() {
-    this.api.getRecentCars(3).subscribe(cars => {
-      this.cars = cars;
+  // ngOnInit() {
+  //   this.api.getRecentCars(3).subscribe(cars => {
+  //     this.cars = cars;
+  //     console.log(cars);
+      
+  //     this.isLoading = false;
+  //   });
+  // }
+
+   ngOnInit() {
+    this.api.getCars().subscribe(cars => {
+      this.cars = cars.slice(-3);
+      console.log(this.cars);
+      
       this.isLoading = false;
     });
   }

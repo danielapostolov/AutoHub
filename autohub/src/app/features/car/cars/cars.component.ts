@@ -19,7 +19,7 @@ export class CarsComponent implements OnInit {
 
   ngOnInit() {
     this.api.getCars().subscribe(cars => {
-      this.cars = cars;
+      this.cars = cars.reverse();
       this.isLoading = false;
     });
 
