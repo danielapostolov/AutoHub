@@ -8,23 +8,21 @@ import { BehaviorSubject, tap } from 'rxjs';
 })
 export class UserService {
 
-  private user$$ = new BehaviorSubject<UserForAuth | undefined>(undefined);
+  private user$$ = new BehaviorSubject<UserForAuth | null>(null);
   private user$ = this.user$$.asObservable();
-
+  
   USER_KEY = '[user]';
   user: UserForAuth | null = null;
+  userId = this.user?.id;
 
   get isLogged(): boolean {
     return !!this.user;
   }
-
+  //TODO FIX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   constructor(private http: HttpClient) {
-    try {
-      const lsUser = localStorage.getItem(this.USER_KEY) || '';
-      this.user = JSON.parse(lsUser);
-    } catch (error) {
-      this.user = null;
-    }
+    this.user$.subscribe((user) => {
+      this.user = user;
+    });
 
   }
 
@@ -43,8 +41,10 @@ export class UserService {
   }
 
   logout() {
-    this.user = null;
-    localStorage.removeItem(this.USER_KEY);
+
+    return this.http
+      .post('/api/logout', {})
+      .pipe(tap((user) => this.user$$.next(null)));
   }
 
 

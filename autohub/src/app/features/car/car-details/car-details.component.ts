@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../../api.service';
 import { Theme } from '../../../types/car';
+// import { UserService } from '../../auth/service/user.service';
+import { UserService } from '../../auth/service/user.service';
 
 @Component({
   selector: 'app-car-details',
@@ -12,10 +14,16 @@ import { Theme } from '../../../types/car';
 })
 export class CarDetailsComponent implements OnInit {
   car = {} as Theme;
+  comments = this.car.posts?.length
 
-  constructor(private route: ActivatedRoute, private api: ApiService) { }
+  public get isLoggedIn(): boolean {
+    return this.userService.isLogged
+  }
 
-  ngOnInit(){
+
+  constructor(private route: ActivatedRoute, private api: ApiService, private userService: UserService) { }
+
+  ngOnInit() {
     let id = this.route.snapshot.params['carId']
     this.api.getSingleCar(id).subscribe(car => {
       this.car = car;

@@ -5,11 +5,11 @@ export interface Theme {
     make: string;                // Manufacturer of the car (e.g., Toyota, Ford)
     likes: string[]; //TODO User[]
     model: string;               // Model of the car (e.g., Camry, Mustang)
-    year: string;              // Manufacturing year of the car;
+    year: number;              // Manufacturing year of the car;
     imgUrl: string;
-    mileage: string;                                                // Optional: Mileage in kilometers or miles
+    mileage: number;                                                // Optional: Mileage in kilometers or miles
     fuelType: 'petrol' | 'diesel' | 'electric' | 'hybrid'; // Type of fuel used
-    price: string;                                                 // Optional: Price of the car;
+    price: number;                                                 // Optional: Price of the car;
     located: string;
     posts:Post[];
     userId: User;                 
@@ -18,6 +18,15 @@ export interface Theme {
     __v: number;
     _id: string;
 }
+
+// make: string,
+//     model: string,
+//     year: string,
+//     imgUrl: string,
+//     mileage: number,
+//     fuelType: string,
+//     price: number,
+//     located: string,
 
 // transmission: 'manual' | 'automatic' | 'semi-automatic'; // Transmission type
 //TODO

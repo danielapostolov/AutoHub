@@ -19,24 +19,29 @@
 
             <!-- Like Button -->
             <div class="mt-6 flex items-center space-x-4">
+                @if (isLoggedIn) {
                 <button
                     class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2 rounded-lg shadow-lg transition">
-                    Like ({{ car.likes && car.likes.length || 0}})
+                    Like
                 </button>
-                <p class="text-gray-400">Total Likes: <span class="text-red-500 font-bold">{{car.likes && car.likes.length ||
+                }
+                <p class="text-gray-400">Total Likes: <span class="text-red-500 font-bold">{{car.likes &&
+                        car.likes.length ||
                         0}}</span></p>
             </div>
 
             <div class="mt-12">
                 <h2 class="text-3xl font-extrabold text-gray-100 mb-4">Comments</h2>
 
+
                 <div class="space-y-6 bg-gray-700 rounded-lg p-6 shadow-md">
+
+                    @if (comments) {
 
                     @for (post of car.posts; track $index) {
                     <div class="flex space-x-4 items-start">
-                        <!-- TODO add img url -->
-                        <img src="https://via.placeholder.com/50" alt="User Avatar"
-                            class="w-12 h-12 rounded-full shadow-md">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                            alt="User Avatar" class="w-12 h-12 rounded-full shadow-md">
                         <div>
                             <p class="text-gray-100 font-bold">{{post.userId.username}}</p>
                             <p class="text-gray-300">{{post.text}}</p>
@@ -44,7 +49,14 @@
                         </div>
                     </div>
                     }
+                    }@else {
+                    <p><span class="font-bold text-gray-100"></span>There are no comments yet.</p>
+
+                    }
+
                 </div>
+                <!-- TODO POSTS -->
+                @if (isLoggedIn) {
 
                 <div class="mt-10 bg-gray-700 rounded-lg p-6 shadow-md">
                     <h3 class="text-2xl font-extrabold text-gray-100 mb-4">Leave a Comment</h3>
@@ -65,6 +77,9 @@
                         </button>
                     </form>
                 </div>
+                }
+
+
             </div>
         </div>
     </div>

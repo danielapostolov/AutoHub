@@ -1,0 +1,39 @@
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+    animation: slideInOut 4s ease-in-out forwards;
+}
+
+.toast-error {
+    background: linear-gradient(135deg, #e53935, #b71c1c);
+}
+
+@keyframes slideInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    85% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}

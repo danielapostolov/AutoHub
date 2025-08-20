@@ -8,6 +8,6 @@ import { RouterLink } from '@angular/router';
   templateUrl: './error.component.html',
   styleUrl: './error.component.css'
 })
-export class ErrorComponent {
+export class PageNotFoundComponent {
 
 }

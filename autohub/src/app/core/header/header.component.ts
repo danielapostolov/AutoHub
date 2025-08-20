@@ -12,6 +12,8 @@ import { UserService } from '../../features/auth/service/user.service';
 export class HeaderComponent {
 
   get isLoggedIn(): boolean {
+    // console.log(this.userService.isLogged);
+
     return this.userService.isLogged;
   }
 
@@ -26,8 +28,9 @@ export class HeaderComponent {
 
 
   logout() {
-    this.userService.logout();
-    this.router.navigate(['/home']);
+    this.userService.logout().subscribe(() => {
+      this.router.navigate(['/login']);
+    });
   }
 
 } 

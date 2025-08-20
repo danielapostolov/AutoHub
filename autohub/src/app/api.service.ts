@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Theme } from './types/car';
+import { UserService } from './features/auth/service/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
+
 
   getCars() {
     return this.http.get<Theme[]>(`/api/themes`)
@@ -31,6 +33,29 @@ export class ApiService {
 
   createCar(make: string,
     model: string,
+    year: number,
+    imgUrl: string,
+    mileage: number,
+    fuelType: string,
+    price: number,
+    located: string,
+    userId: string) {
+    const payload = {
+      make,
+      model,
+      year,
+      imgUrl,
+      mileage,
+      fuelType,
+      price,
+      located,
+      userId
+    }
+    return this.http.post<Theme>(`/api/themes`, payload)
+  }
+
+  editCar(make: string,
+    model: string,
     year: string,
     imgUrl: string,
     mileage: number,
@@ -48,6 +73,7 @@ export class ApiService {
       located,
     }
 
-    return this.http.post<Theme>(`/api/themes`, payload)
+    return this.http.put<Theme>(`/api/themes/`, payload)
+    //TODO
   }
 }
