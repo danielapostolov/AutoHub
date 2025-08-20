@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserForAuth } from '../../../types/user';
+import { User, UserForAuth } from '../../../types/user';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap } from 'rxjs';
 
@@ -10,7 +10,7 @@ export class UserService {
 
   private user$$ = new BehaviorSubject<UserForAuth | null>(null);
   private user$ = this.user$$.asObservable();
-  
+
   USER_KEY = '[user]';
   user: UserForAuth | null = null;
   userId = this.user?.id;
@@ -52,6 +52,17 @@ export class UserService {
     return this.http
       .get<UserForAuth>('/api/users/profile')
       .pipe(tap((user) => this.user$$.next(user)));
+  }
+
+  getFullProfile() {
+    return this.http
+      .get<User>('/api/users/profile')
+  }
+
+  editProfile(username: string, email: string, tel?: string) {
+    return this.http.put<UserForAuth>('/api/users/profile', {
+      username, email, tel
+    }).pipe(tap((user) => this.user$$.next(user)));
   }
   //  TODO check endpoint
 }

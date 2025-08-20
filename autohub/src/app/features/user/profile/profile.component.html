@@ -3,20 +3,26 @@
 
     <div class="bg-gray-800 shadow-xl rounded-lg p-8 max-w-lg mx-auto space-y-6">
         <div class="text-center">
-            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Profile Image" class="w-32 h-32 rounded-full mx-auto mb-4">
-            <h3 class="text-3xl font-bold text-gray-100">{{ 'user?.username' }}</h3>
-            <p class="text-gray-400">{{ 'user?.email' }}</p>
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png"
+                alt="Profile Image" class="w-32 h-32 rounded-full mx-auto mb-4">
+            <h3 class="text-3xl font-bold text-gray-100">{{ user.username }}</h3>
+            <p class="text-gray-400">{{ user.email }}</p>
         </div>
 
         <div class="mt-6">
             <div class="flex justify-between">
                 <span class="font-semibold text-gray-300">Phone:</span>
-                <span class="text-gray-100">{{ 'user?.phone' }}</span>
+                <span class="text-gray-100">{{ user.tel }}</span>
             </div>
             <div class="flex justify-between mt-2">
                 <span class="font-semibold text-gray-300">Created At:</span>
-                <span class="text-gray-100">{{ 'user?.created_at'}}</span>
+                <span class="text-gray-100">{{ user.created_at}}</span>
+                <a routerLink="/profile-edit"
+                    class="editbtn justify-between bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg shadow-lg transition">Edit
+                </a>
             </div>
         </div>
+
     </div>
+
 </section>

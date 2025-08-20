@@ -18,7 +18,7 @@ export class HeaderComponent {
   }
 
   get firstName(): string {
-    return this.userService.user?.firstName || '';
+    return this.userService.user?.username || '';
   }
 
   get email(): string {

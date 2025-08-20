@@ -11,6 +11,7 @@ import { ContactComponent } from './features/contact/contact.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProfileComponent } from './features/user/profile/profile.component';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
+import { ProfileEditComponent } from './features/user/profile-edit/profile-edit.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,7 +26,7 @@ export const routes: Routes = [
         path: "cars", children: [
 
             { path: "", component: CarsComponent },
-            { path: ":carId", component: CarDetailsComponent },
+            { path: ":carId", component: CarDetailsComponent, pathMatch: 'full' },
 
 
         ]
@@ -36,6 +37,7 @@ export const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'contacts', component: ContactComponent },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'profile-edit', component: ProfileEditComponent, canActivate: [AuthGuard] },
 
     { path: 'error', component: ErrorMsgComponent },
 

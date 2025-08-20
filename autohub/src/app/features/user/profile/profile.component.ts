@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { ProfileDetails, User } from '../../../types/user';
+import { ProfileDetails, User, UserForAuth } from '../../../types/user';
 import { ApiService } from '../../../api.service';
 import { UserService } from '../../auth/service/user.service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -23,10 +24,10 @@ export class ProfileComponent {
   constructor(private api: ApiService, private userService: UserService) { }
 
   ngOnInit() {
-    // let user = this.userService.getProfile().
-    //   subscribe(user =>
-    //     this.user = user
-    //   );
+    let user = this.userService.getFullProfile().
+      subscribe(user =>
+        this.user = user
+      );
 
   }
 }
